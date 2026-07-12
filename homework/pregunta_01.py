@@ -28,12 +28,12 @@ for column in df.select_dtypes(include = ["object"]).columns:                   
 
 df["monto_del_credito"] = df["monto_del_credito"].astype(float)                      # pasar monto_del_credito a flotante
 df["comuna_ciudadano"]  = df["comuna_ciudadano"].astype(int)                         # Pasar comuna_ciudadano a entero 
-df["fecha_de_beneficio"] = pd.to_datetime(df["fecha_de_beneficio"],                  # ORGANIZAR LOS FORMATOS DE LA FECHAS     
+df["fecha_de_beneficio"] = pd.to_datetime(df["fecha_de_beneficio"],                  # Organizar los formatos de las fechas     
                                                 format = "%d/%m/%Y", errors = "coerce").combine_first(pd.to_datetime(df["fecha_de_beneficio"],
                                                 format = "%Y/%m/%d", errors = "coerce"))
 df = df.drop_duplicates()                                                            # Sin duplicados en el dataframe
 df = df.dropna()                                                                     # Sin registros nulos
 
-os.makedirs("files/output", exist_ok = True)                                         # Carpeta output ppara el test
+os.makedirs("files/output", exist_ok = True)                                         # Carpeta output ppara el tesT
 
 df.to_csv("files/output/solicitudes_de_credito.csv", columns = df.columns, index = False, encoding = "utf-8", sep = ";")
